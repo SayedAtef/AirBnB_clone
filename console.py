@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+""" AirBnB Console """
+import cmd
+from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+
+
+class HBNBCommand(cmd.Cmd):
+    """ HBNBCommand  Class """
+    prompt = '(hbnb) '
+    classes = {'BaseModel': BaseModel, 'User': User, 'City': City,
+               'Place': Place, 'Amenity': Amenity, 'Review': Review,
+               'State': State}
+    
+    def do_quit(self, arg):
+        """ Exit method for quit """
+        exit()
+
+    def do_EOF(self, arg):
+        """ Exit method for EOF """
+        print('')
+        exit()
+
+    def emptyline(self):
+        """ Method to pass when entering emptyline """
+        pass
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
