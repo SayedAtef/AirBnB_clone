@@ -1,5 +1,5 @@
-0x00. AirBnB clone - The console
-Project to be done in teams of 2 people (your team: Oluwatobi Gbadamosi, Sayed Mohamed)
+# 0x00. AirBnB clone - The console
+## Project to be done in teams of 2 people (your team: Oluwatobi Gbadamosi, Sayed Mohamed)
 Background Context
 Welcome to the AirBnB clone project!
 Before starting, please read the AirBnB concept page.
