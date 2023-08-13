@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" AirBnB The Console """
+""" AirBnB The """
 import cmd
 import sys
 import os
