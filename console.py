@@ -32,5 +32,21 @@ class HBNBCommand(cmd.Cmd):
         """ Method to pass when entering emptyline """
         pass
 
+    def do_create(self, arg):
+        """ Create a new instance of base model """
+        if len(arg) == 0:
+            print('** class name missing **')
+            return
+        newInstance = None
+        if arg:
+            arg_list = arg.split()
+            if len(arg_list) == 1:
+                if arg in self.classes.keys():
+                    newInstance = self.classes[arg]()
+                    newInstance.save()
+                    print(newInstance.id)
+                else:
+                    print("** class doesn't exist **")
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
