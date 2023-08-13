@@ -74,9 +74,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         argumentList = arg.split()
-        try:
-            obj = eval(argumentList[0])
-        except Exception:
+        if argumentList[0] not in self.classes:
             print("** class doesn't exist **")
             return
         if len(argumentList) == 1:
