@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-""" AirBnB Console """
+""" AirBnB The Console """
 import cmd
+import sys
+import os
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
