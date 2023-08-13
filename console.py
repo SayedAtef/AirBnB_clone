@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
         
     def do_destroy(self, arg):
-        """ Method to delete instance with both class and id """
+        """ Deletes an instance based on the class name and id """
         if len(arg) == 0:
             print("** class name missing **")
             return
@@ -81,22 +81,22 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
             return
         if len(argumentList) > 1:
-            key = argumentList[0] + '.' + argumentList[1]
-            if key in storage.all():
-                storage.all().pop(key)
+            keyInstance = argumentList[0] + '.' + argumentList[1]
+            if keyInstance in storage.all():
+                storage.all().pop(keyInstance)
                 storage.save()
             else:
                 print('** no instance found **')
                 return
 
     def do_all(self, arg):
-        """ Method to print all instances """
+        """ Prints all string representation of all instances """
         if len(arg) == 0:
-            print([str(a) for a in storage.all().values()])
+            print([str(inst) for inst in storage.all().values()])
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            print([str(a) for b, a in storage.all().items() if arg in b])
+            print([str(inst) for l, inst in storage.all().items() if arg in l])
 
     def do_update(self, arg):
         """ Method to update JSON file"""
