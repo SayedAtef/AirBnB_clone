@@ -69,39 +69,37 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
         
     def do_destroy(self, arg):
-        """ Method to delete instance with both class and id """
+        """ Deletes an instance based on the class name and id """
         if len(arg) == 0:
             print("** class name missing **")
             return
         argumentList = arg.split()
-        try:
-            obj = eval(argumentList[0])
-        except Exception:
+        if argumentList[0] not in self.classes:
             print("** class doesn't exist **")
             return
         if len(argumentList) == 1:
             print('** instance id missing **')
             return
         if len(argumentList) > 1:
-            key = argumentList[0] + '.' + argumentList[1]
-            if key in storage.all():
-                storage.all().pop(key)
+            keyInstance = argumentList[0] + '.' + argumentList[1]
+            if keyInstance in storage.all():
+                storage.all().pop(keyInstance)
                 storage.save()
             else:
                 print('** no instance found **')
                 return
 
     def do_all(self, arg):
-        """ Method to print all instances """
+        """ Prints all string representation of all instances """
         if len(arg) == 0:
-            print([str(a) for a in storage.all().values()])
+            print([str(inst) for inst in storage.all().values()])
         elif arg not in self.classes:
             print("** class doesn't exist **")
         else:
-            print([str(a) for b, a in storage.all().items() if arg in b])
+            print([str(inst) for l, inst in storage.all().items() if arg in l])
 
     def do_update(self, arg):
-        """ Method to update JSON file"""
+        """ Updates an instance based on the class name and id """
         arg = arg.split()
         if len(arg) == 0:
             print('** class name missing **')
@@ -113,17 +111,17 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
             return
         else:
-            key = arg[0] + '.' + arg[1]
-            if key in storage.all():
+            keyInstance = arg[0] + '.' + arg[1]
+            if keyInstance in storage.all():
                 if len(arg) > 2:
                     if len(arg) == 3:
                         print('** value missing **')
                     else:
                         setattr(
-                            storage.all()[key],
+                            storage.all()[keyInstance],
                             arg[2],
                             arg[3][1:-1])
-                        storage.all()[key].save()
+                        storage.all()[keyInstance].save()
                 else:
                     print('** attribute name missing **')
             else:
