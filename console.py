@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             print([str(inst) for l, inst in storage.all().items() if arg in l])
 
     def do_update(self, arg):
-        """ Method to update JSON file"""
+        """ Updates an instance based on the class name and id """
         arg = arg.split()
         if len(arg) == 0:
             print('** class name missing **')
@@ -111,17 +111,17 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
             return
         else:
-            key = arg[0] + '.' + arg[1]
-            if key in storage.all():
+            keyInstance = arg[0] + '.' + arg[1]
+            if keyInstance in storage.all():
                 if len(arg) > 2:
                     if len(arg) == 3:
                         print('** value missing **')
                     else:
                         setattr(
-                            storage.all()[key],
+                            storage.all()[keyInstance],
                             arg[2],
                             arg[3][1:-1])
-                        storage.all()[key].save()
+                        storage.all()[keyInstance].save()
                 else:
                     print('** attribute name missing **')
             else:
